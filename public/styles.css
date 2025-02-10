@@ -46,6 +46,26 @@ body{
         .ChatLog::-webkit-scrollbar {
         display: none; 
         }
+        .Message{
+            display: flex;
+            margin: 0px;
+            gap: 10px;
+            p{
+                margin: 10px;
+            }
+        }
+        .User{
+            border-radius: 10px;
+            display: flex;
+            justify-content: end;
+        }
+        .ChatBot{
+            background-color: #f0f0f0;
+            color: #333;
+            border-radius: 10px;
+            display: flex;
+            justify-content: start;
+        }
     .ChatInput{
         display: flex;
         justify-content: space-between;
