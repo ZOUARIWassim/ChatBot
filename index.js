@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path'); 
+require('dotenv').config();
+const { GroqAPI } = require('./GroqAPI');
+const ConversationHistory = [];
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,9 +16,9 @@ app.get('/', (req, res) => {
 
 app.post('/GetChatBotResponse', async (req, res) => {
     const UserMessage = req.body.UserMessage;
-
-    const ChatBotResponse = await getChatBotResponse(UserMessage);
-
+    const Conversation = { role: "user", content: UserMessage }
+    ConversationHistory.push(Conversation);
+    const ChatBotResponse = await GroqAPI.GetChatBotResponse(UserMessage, ConversationHistory);
     res.json({ ChatBotResponse });
 });
 

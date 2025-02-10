@@ -23,5 +23,18 @@ function DisplayMessage(sender,message) {
 }
 
 function getChatBotResponse(UserMessage) {
-    DisplayMessage('ChatBot',"I am a ChatBot, I am not programmed to respond to messages yet.");
+    fetch('/GetChatBotResponse', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ UserMessage })
+    })
+    .then(response => response.json())
+    .then(data => {
+        DisplayMessage('ChatBot',data.ChatBotResponse);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
